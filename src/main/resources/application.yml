@@ -1,7 +1,6 @@
 server:
   port: 9090
 
-
 spring:
   servlet:
     multipart:
@@ -20,11 +19,16 @@ spring:
     generate-ddl: true
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
   properties:
     hibernate:
       format_sql: true
-#  liquibase:
+  application:
+    name: e-commerce
+
+
+  liquibase:
+    enabled: false
 #    changeLog: "classpath:db/migrations/my-master-change-log.yml"
 #    url: jdbc:mysql://localhost:3306/ecommerce_db
 #    user: root

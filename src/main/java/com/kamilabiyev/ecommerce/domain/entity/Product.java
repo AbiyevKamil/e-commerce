@@ -29,8 +29,9 @@ public class Product {
     private Double price;
     private Boolean isDeleted = false;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    private Set<FileEntity> files;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
+    private Set<ProductFile> productFiles;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Seller seller;
@@ -43,6 +44,4 @@ public class Product {
     private Timestamp createdAt;
     @UpdateTimestamp
     private Timestamp updatedAt;
-
-
 }
