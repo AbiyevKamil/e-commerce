@@ -19,6 +19,8 @@ public class Seller {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private User user;
 

@@ -18,6 +18,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String fullName;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private User user;
 

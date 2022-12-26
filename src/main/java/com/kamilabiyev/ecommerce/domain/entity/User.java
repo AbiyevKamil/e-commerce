@@ -1,5 +1,6 @@
 package com.kamilabiyev.ecommerce.domain.entity;
 
+import com.kamilabiyev.ecommerce.domain.constant.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,9 +42,10 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
 
     public void addRole(Role role) {
+        if (roles == null) roles = new HashSet<>();
         roles.add(role);
     }
 
@@ -77,5 +79,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isEnabled;
+    }
+
+    @PrePersist
+    public void init() {
+        isAccountNonExpired = true;
+        isAccountNonLocked = true;
+        isCredentialsNonExpired = true;
+        isEnabled = true;
     }
 }

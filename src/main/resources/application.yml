@@ -38,7 +38,7 @@ spring:
 jwt:
   config:
     secret-key: 3m59OX5h1ZTJsXmQF36qp7URWdFXV7Pz1WOjOmo9McCLWkxLdUVpiSAN8NlbbRXBDCTBqelhXrTWnz1W1WP0aiaPik7z5oGwYLMB1th5aFQoid2Qh7sadgmErUJstUqe
-    expiration-time: 86400000*3
+    expiration-time: 86400000
 file-upload:
   settings:
     upload-folder: d:/ecommercefiles/uploads/
