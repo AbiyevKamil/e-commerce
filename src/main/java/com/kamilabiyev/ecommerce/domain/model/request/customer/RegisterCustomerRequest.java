@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.request.customer;
+package com.kamilabiyev.ecommerce.domain.model.request.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

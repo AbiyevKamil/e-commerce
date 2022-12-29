@@ -1,5 +1,6 @@
-package com.kamilabiyev.ecommerce.domain.response;
+package com.kamilabiyev.ecommerce.domain.model.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -9,6 +10,7 @@ import java.time.Instant;
 public class AuthResponse {
     private String accessToken;
     private String refreshToken;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss.SSS aa", timezone = "Asia/Baku")
     private Timestamp generatedAt;
 
     public AuthResponse(String accessToken, String refreshToken) {

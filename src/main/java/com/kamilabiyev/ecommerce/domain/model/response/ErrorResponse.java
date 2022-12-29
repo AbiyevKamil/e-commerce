@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.response;
+package com.kamilabiyev.ecommerce.domain.model.response;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

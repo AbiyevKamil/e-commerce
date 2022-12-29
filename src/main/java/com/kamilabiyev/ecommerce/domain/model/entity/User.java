@@ -1,6 +1,5 @@
-package com.kamilabiyev.ecommerce.domain.entity;
+package com.kamilabiyev.ecommerce.domain.model.entity;
 
-import com.kamilabiyev.ecommerce.domain.constant.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

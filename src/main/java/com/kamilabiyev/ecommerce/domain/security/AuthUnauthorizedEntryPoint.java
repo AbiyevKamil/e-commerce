@@ -1,7 +1,7 @@
 package com.kamilabiyev.ecommerce.domain.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kamilabiyev.ecommerce.domain.response.ErrorResponse;
+import com.kamilabiyev.ecommerce.domain.model.response.ErrorResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.request.category;
+package com.kamilabiyev.ecommerce.domain.model.request.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,10 +1,10 @@
 package com.kamilabiyev.ecommerce.service.data.impl;
 
-import com.kamilabiyev.ecommerce.domain.dto.CategoryDto;
+import com.kamilabiyev.ecommerce.domain.model.dto.CategoryDto;
 import com.kamilabiyev.ecommerce.domain.exception.DataExistsException;
 import com.kamilabiyev.ecommerce.domain.exception.DataNotFoundException;
-import com.kamilabiyev.ecommerce.domain.request.category.CreateCategoryRequest;
-import com.kamilabiyev.ecommerce.domain.request.category.UpdateCategoryRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.category.CreateCategoryRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.category.UpdateCategoryRequest;
 import com.kamilabiyev.ecommerce.repository.CategoryRepository;
 import com.kamilabiyev.ecommerce.service.data.CategoryService;
 import com.kamilabiyev.ecommerce.service.utils.mapper.CategoryMapper;

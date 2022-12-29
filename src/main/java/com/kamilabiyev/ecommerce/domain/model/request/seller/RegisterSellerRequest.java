@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.request.seller;
+package com.kamilabiyev.ecommerce.domain.model.request.seller;
 
 import lombok.Data;
 

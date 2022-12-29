@@ -5,7 +5,7 @@ import com.kamilabiyev.ecommerce.domain.exception.DataExistsException;
 import com.kamilabiyev.ecommerce.domain.exception.DataNotFoundException;
 import com.kamilabiyev.ecommerce.domain.exception.InvalidCredentialsException;
 import com.kamilabiyev.ecommerce.domain.exception.InvalidTokenException;
-import com.kamilabiyev.ecommerce.domain.response.ErrorResponse;
+import com.kamilabiyev.ecommerce.domain.model.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

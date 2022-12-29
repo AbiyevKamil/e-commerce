@@ -46,6 +46,8 @@ public class SecurityConfig {
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/category").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/category/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/role").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/role/{id}").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()

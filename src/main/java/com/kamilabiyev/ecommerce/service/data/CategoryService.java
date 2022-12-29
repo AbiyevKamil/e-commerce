@@ -1,10 +1,9 @@
 package com.kamilabiyev.ecommerce.service.data;
 
 
-import com.kamilabiyev.ecommerce.domain.dto.CategoryDto;
-import com.kamilabiyev.ecommerce.domain.request.category.CreateCategoryRequest;
-import com.kamilabiyev.ecommerce.domain.request.category.UpdateCategoryRequest;
-import org.springframework.http.ResponseEntity;
+import com.kamilabiyev.ecommerce.domain.model.dto.CategoryDto;
+import com.kamilabiyev.ecommerce.domain.model.request.category.CreateCategoryRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.category.UpdateCategoryRequest;
 
 import java.util.List;
 

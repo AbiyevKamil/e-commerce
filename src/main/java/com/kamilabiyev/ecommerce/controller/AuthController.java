@@ -1,8 +1,8 @@
 package com.kamilabiyev.ecommerce.controller;
 
-import com.kamilabiyev.ecommerce.domain.request.auth.LoginRequest;
-import com.kamilabiyev.ecommerce.domain.request.customer.RegisterCustomerRequest;
-import com.kamilabiyev.ecommerce.domain.request.seller.RegisterSellerRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.auth.LoginRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.customer.RegisterCustomerRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.seller.RegisterSellerRequest;
 import com.kamilabiyev.ecommerce.service.data.AuthService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import lombok.RequiredArgsConstructor;

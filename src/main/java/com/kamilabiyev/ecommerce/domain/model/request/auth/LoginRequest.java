@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.request.auth;
+package com.kamilabiyev.ecommerce.domain.model.request.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

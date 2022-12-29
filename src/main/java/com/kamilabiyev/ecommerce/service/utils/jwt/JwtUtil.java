@@ -1,7 +1,6 @@
 package com.kamilabiyev.ecommerce.service.utils.jwt;
 
-import com.kamilabiyev.ecommerce.domain.entity.Role;
-import com.kamilabiyev.ecommerce.domain.entity.User;
+import com.kamilabiyev.ecommerce.domain.model.entity.User;
 import com.kamilabiyev.ecommerce.domain.property.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,5 +1,6 @@
-package com.kamilabiyev.ecommerce.domain.entity;
+package com.kamilabiyev.ecommerce.domain.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,29 +8,17 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.sql.Timestamp;
 
-@Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDto {
     private Long id;
-
     private String name;
-
-    private Boolean isDeleted;
-
-    @CreationTimestamp
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss.SSS aa", timezone = "Asia/Baku")
     private Timestamp createdAt;
-
-    @UpdateTimestamp
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss.SSS", timezone = "Asia/Baku")
     private Timestamp updatedAt;
 }

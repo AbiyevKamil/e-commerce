@@ -1,9 +1,7 @@
 package com.kamilabiyev.ecommerce.repository;
 
-import com.kamilabiyev.ecommerce.domain.dto.CategoryDto;
-import com.kamilabiyev.ecommerce.domain.entity.Category;
+import com.kamilabiyev.ecommerce.domain.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
