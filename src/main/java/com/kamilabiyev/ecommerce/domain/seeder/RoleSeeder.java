@@ -1,7 +1,7 @@
 package com.kamilabiyev.ecommerce.domain.seeder;
 
 import com.kamilabiyev.ecommerce.domain.constant.RoleType;
-import com.kamilabiyev.ecommerce.domain.model.entity.Role;
+import com.kamilabiyev.ecommerce.domain.entity.Role;
 import com.kamilabiyev.ecommerce.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

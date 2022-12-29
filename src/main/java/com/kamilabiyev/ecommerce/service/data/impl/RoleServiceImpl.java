@@ -3,7 +3,7 @@ package com.kamilabiyev.ecommerce.service.data.impl;
 import com.kamilabiyev.ecommerce.domain.exception.DataExistsException;
 import com.kamilabiyev.ecommerce.domain.exception.DataNotFoundException;
 import com.kamilabiyev.ecommerce.domain.model.dto.RoleDto;
-import com.kamilabiyev.ecommerce.domain.model.entity.Role;
+import com.kamilabiyev.ecommerce.domain.entity.Role;
 import com.kamilabiyev.ecommerce.domain.model.request.role.CreateRoleRequest;
 import com.kamilabiyev.ecommerce.domain.model.request.role.UpdateRoleRequest;
 import com.kamilabiyev.ecommerce.repository.RoleRepository;

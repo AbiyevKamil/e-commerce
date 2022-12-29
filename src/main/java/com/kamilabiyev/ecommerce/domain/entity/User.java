@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.model.entity;
+package com.kamilabiyev.ecommerce.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +34,7 @@ public class User implements UserDetails {
     private Boolean isAccountNonLocked = true;
     private Boolean isCredentialsNonExpired = true;
     private Boolean isEnabled = true;
+    private Boolean isDeleted = false;
 
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
@@ -86,5 +87,6 @@ public class User implements UserDetails {
         isAccountNonLocked = true;
         isCredentialsNonExpired = true;
         isEnabled = true;
+        isDeleted = false;
     }
 }

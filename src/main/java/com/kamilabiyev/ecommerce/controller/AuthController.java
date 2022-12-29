@@ -1,15 +1,20 @@
 package com.kamilabiyev.ecommerce.controller;
 
 import com.kamilabiyev.ecommerce.domain.model.request.auth.LoginRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.auth.RefreshTokenRequest;
 import com.kamilabiyev.ecommerce.domain.model.request.customer.RegisterCustomerRequest;
 import com.kamilabiyev.ecommerce.domain.model.request.seller.RegisterSellerRequest;
+import com.kamilabiyev.ecommerce.domain.model.response.AuthResponse;
 import com.kamilabiyev.ecommerce.service.data.AuthService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/auth")
@@ -33,5 +38,12 @@ public class AuthController {
     @SecurityRequirements
     public ResponseEntity registerSeller(RegisterSellerRequest registerSellerRequest) {
         return ResponseEntity.ok().body(authService.registerSeller(registerSellerRequest));
+    }
+
+    @PostMapping("/refresh-token")
+    @SecurityRequirements
+    public ResponseEntity<AuthResponse> refreshToken(
+            @Valid @RequestBody(required = false) RefreshTokenRequest refreshTokenRequest) {
+        return ResponseEntity.ok().body(authService.refreshToken(refreshTokenRequest));
     }
 }

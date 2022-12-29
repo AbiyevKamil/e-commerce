@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.model.entity;
+package com.kamilabiyev.ecommerce.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,15 +18,11 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Category {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long roleId;
     private String name;
-
-    private Boolean isDeleted;
-
     @CreationTimestamp
     private Timestamp createdAt;
 

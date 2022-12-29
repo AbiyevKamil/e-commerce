@@ -1,7 +1,7 @@
 package com.kamilabiyev.ecommerce.service.utils.mapper;
 
 import com.kamilabiyev.ecommerce.domain.model.dto.RoleDto;
-import com.kamilabiyev.ecommerce.domain.model.entity.Role;
+import com.kamilabiyev.ecommerce.domain.entity.Role;
 import com.kamilabiyev.ecommerce.domain.model.request.role.CreateRoleRequest;
 import org.springframework.stereotype.Component;
 

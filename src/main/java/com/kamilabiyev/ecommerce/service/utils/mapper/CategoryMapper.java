@@ -1,7 +1,7 @@
 package com.kamilabiyev.ecommerce.service.utils.mapper;
 
 import com.kamilabiyev.ecommerce.domain.model.dto.CategoryDto;
-import com.kamilabiyev.ecommerce.domain.model.entity.Category;
+import com.kamilabiyev.ecommerce.domain.entity.Category;
 import com.kamilabiyev.ecommerce.domain.model.request.category.CreateCategoryRequest;
 import org.springframework.stereotype.Component;
 

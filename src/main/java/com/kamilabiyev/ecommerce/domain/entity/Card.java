@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.model.entity;
+package com.kamilabiyev.ecommerce.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -18,11 +15,17 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Role {
+public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roleId;
-    private String name;
+    private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Customer customer;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Product product;
+    private Long quantity;
+
     @CreationTimestamp
     private Timestamp createdAt;
 

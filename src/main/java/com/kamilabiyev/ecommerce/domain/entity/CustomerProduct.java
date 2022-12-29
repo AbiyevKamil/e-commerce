@@ -1,4 +1,4 @@
-package com.kamilabiyev.ecommerce.domain.model.entity;
+package com.kamilabiyev.ecommerce.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,14 +15,18 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Transaction {
+public class CustomerProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private CustomerProduct customerProduct;
+    private Customer customer;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Product product;
     private Long quantity;
+
     @CreationTimestamp
     private Timestamp createdAt;
 

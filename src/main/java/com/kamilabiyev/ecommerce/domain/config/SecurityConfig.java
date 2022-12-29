@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .and()
                 .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/auth/refreshToken").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/auth/refresh-token").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/register-customer").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/register-seller").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()

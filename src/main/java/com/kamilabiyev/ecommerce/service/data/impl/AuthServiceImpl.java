@@ -2,12 +2,14 @@ package com.kamilabiyev.ecommerce.service.data.impl;
 
 import com.kamilabiyev.ecommerce.domain.constant.BalanceValue;
 import com.kamilabiyev.ecommerce.domain.constant.RoleType;
-import com.kamilabiyev.ecommerce.domain.model.entity.Customer;
-import com.kamilabiyev.ecommerce.domain.model.entity.Seller;
-import com.kamilabiyev.ecommerce.domain.model.entity.User;
+import com.kamilabiyev.ecommerce.domain.entity.Customer;
+import com.kamilabiyev.ecommerce.domain.entity.Seller;
+import com.kamilabiyev.ecommerce.domain.entity.User;
 import com.kamilabiyev.ecommerce.domain.exception.DataExistsException;
+import com.kamilabiyev.ecommerce.domain.exception.DataNotFoundException;
 import com.kamilabiyev.ecommerce.domain.exception.InvalidCredentialsException;
 import com.kamilabiyev.ecommerce.domain.model.request.auth.LoginRequest;
+import com.kamilabiyev.ecommerce.domain.model.request.auth.RefreshTokenRequest;
 import com.kamilabiyev.ecommerce.domain.model.request.customer.RegisterCustomerRequest;
 import com.kamilabiyev.ecommerce.domain.model.request.seller.RegisterSellerRequest;
 import com.kamilabiyev.ecommerce.domain.model.response.AuthResponse;
@@ -26,6 +28,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -42,7 +46,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     @Override
     public AuthResponse registerCustomer(RegisterCustomerRequest registerCustomerRequest) {
-        var usernameCheck = userRepository.existsByUsername(registerCustomerRequest.getUsername());
+        var usernameCheck = userRepository.existsByUsernameAndIsDeleted(registerCustomerRequest.getUsername(), false);
         if (usernameCheck) throw new DataExistsException("Username is already taken.");
         var emailCheck = userRepository.existsByEmail(registerCustomerRequest.getEmail());
         if (emailCheck) throw new DataExistsException("Email is already registered.");
@@ -66,7 +70,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     @Override
     public AuthResponse registerSeller(RegisterSellerRequest registerSellerRequest) {
-        var usernameCheck = userRepository.existsByUsername(registerSellerRequest.getUsername());
+        var usernameCheck = userRepository.existsByUsernameAndIsDeleted(registerSellerRequest.getUsername(), false);
         if (usernameCheck) throw new DataExistsException("Username is already taken.");
         var emailCheck = userRepository.existsByEmail(registerSellerRequest.getEmail());
         if (emailCheck) throw new DataExistsException("Email is already registered.");
@@ -90,10 +94,26 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse login(LoginRequest loginRequest) {
         authenticate(loginRequest);
-        var userCheck = userRepository.findByUsername(loginRequest.getUsername());
+        var userCheck = userRepository
+                .findByUsernameAndIsDeleted(loginRequest.getUsername(), false);
         if (userCheck.isEmpty()) throw new InvalidCredentialsException("Username is not registered.");
         var user = userCheck.get();
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) throw new InvalidCredentialsException("Password is wrong.");
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
+            throw new InvalidCredentialsException("Password is wrong.");
+        var accessToken = jwtUtil.generateAccessToken(user);
+        var refreshToken = jwtUtil.generateRefreshToken(user);
+        var response = new AuthResponse(accessToken, refreshToken);
+        return response;
+    }
+
+    @SneakyThrows
+    @Override
+    public AuthResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+        String username = jwtUtil.getUsernameFromToken(refreshTokenRequest.getRefreshToken());
+        Optional<User> userByUsername = userRepository.findByUsernameAndIsDeleted(username, false);
+        if (userByUsername.isEmpty())
+            throw new DataNotFoundException("User does not exist.");
+        User user = userByUsername.get();
         var accessToken = jwtUtil.generateAccessToken(user);
         var refreshToken = jwtUtil.generateRefreshToken(user);
         var response = new AuthResponse(accessToken, refreshToken);
@@ -103,7 +123,8 @@ public class AuthServiceImpl implements AuthService {
     private void authenticate(LoginRequest loginRequest) {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                            loginRequest.getPassword()));
         } catch (DisabledException e) {
             throw new DisabledException("User is disabled", e);
         } catch (BadCredentialsException e) {

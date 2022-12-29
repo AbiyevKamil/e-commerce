@@ -1,6 +1,6 @@
 package com.kamilabiyev.ecommerce.repository;
 
-import com.kamilabiyev.ecommerce.domain.model.entity.Category;
+import com.kamilabiyev.ecommerce.domain.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
