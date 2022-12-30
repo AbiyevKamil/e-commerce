@@ -42,7 +42,7 @@ public class AuthController {
 
     @PostMapping("/refresh-token")
     @SecurityRequirements
-    public ResponseEntity<AuthResponse> refreshToken(
+    public ResponseEntity refreshToken(
             @Valid @RequestBody(required = false) RefreshTokenRequest refreshTokenRequest) {
         return ResponseEntity.ok().body(authService.refreshToken(refreshTokenRequest));
     }

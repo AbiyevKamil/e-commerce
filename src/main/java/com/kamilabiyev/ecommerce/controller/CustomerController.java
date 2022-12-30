@@ -22,7 +22,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getById(@Valid @PathVariable Long id) {
+    public ResponseEntity getById(@PathVariable Long id) {
         return ResponseEntity.ok().body(customerService.getById(id));
     }
 

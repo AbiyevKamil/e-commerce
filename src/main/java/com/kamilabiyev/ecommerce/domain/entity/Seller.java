@@ -27,7 +27,6 @@ public class Seller {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private User user;
 
-
     private Double balance = 0D;
 
     private String description;

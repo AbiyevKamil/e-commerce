@@ -1,10 +1,7 @@
 package com.kamilabiyev.ecommerce.domain.exception.handler;
 
 
-import com.kamilabiyev.ecommerce.domain.exception.DataExistsException;
-import com.kamilabiyev.ecommerce.domain.exception.DataNotFoundException;
-import com.kamilabiyev.ecommerce.domain.exception.InvalidCredentialsException;
-import com.kamilabiyev.ecommerce.domain.exception.InvalidTokenException;
+import com.kamilabiyev.ecommerce.domain.exception.*;
 import com.kamilabiyev.ecommerce.domain.model.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,7 +19,7 @@ import java.util.List;
 public class GeneralExceptionHandler {
 
     @ExceptionHandler(DataExistsException.class)
-    public ResponseEntity<ErrorResponse> handleCustomException(DataExistsException e,
+    public ResponseEntity<ErrorResponse> handleDataExistsException(DataExistsException e,
                                                                HttpServletRequest request) {
         //        String method = request.getMethod();
         //        String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -34,21 +31,21 @@ public class GeneralExceptionHandler {
     }
 
     @ExceptionHandler(DataNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleCustomException(DataNotFoundException e,
+    public ResponseEntity<ErrorResponse> handleDataNotFoundException(DataNotFoundException e,
                                                                HttpServletRequest request) {
         var response = new ErrorResponse(List.of(e.getMessage()), HttpStatus.NOT_FOUND, request.getRequestURI());
         return new ResponseEntity<>(response, response.getStatus());
     }
 
     @ExceptionHandler(InvalidTokenException.class)
-    public ResponseEntity<ErrorResponse> handleCustomException(InvalidTokenException e,
+    public ResponseEntity<ErrorResponse> handleInvalidTokenException(InvalidTokenException e,
                                                                HttpServletRequest request) {
         var response = new ErrorResponse(List.of(e.getMessage()), HttpStatus.UNAUTHORIZED, request.getRequestURI());
         return new ResponseEntity<>(response, response.getStatus());
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)
-    public ResponseEntity<ErrorResponse> handleCustomException(InvalidCredentialsException e,
+    public ResponseEntity<ErrorResponse> handleInvalidCredentialsException(InvalidCredentialsException e,
                                                                HttpServletRequest request) {
         var response = new ErrorResponse(List.of(e.getMessage()), HttpStatus.UNAUTHORIZED, request.getRequestURI());
         return new ResponseEntity<>(response, response.getStatus());
@@ -64,6 +61,12 @@ public class GeneralExceptionHandler {
     @ExceptionHandler(DisabledException.class)
     protected ResponseEntity<Object> handleDisabledException(DisabledException e, HttpServletRequest request) {
         var response = new ErrorResponse(List.of(e.getMessage()), HttpStatus.UNAUTHORIZED, request.getRequestURI());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+    @ExceptionHandler(InvalidFileException.class)
+    protected ResponseEntity<Object> handleInvalidFileException(InvalidFileException e, HttpServletRequest request) {
+        var response = new ErrorResponse(List.of(e.getMessage()), HttpStatus.BAD_REQUEST, request.getRequestURI());
         return new ResponseEntity<>(response, response.getStatus());
     }
 
